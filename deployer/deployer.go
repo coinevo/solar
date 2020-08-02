@@ -3,7 +3,7 @@ package deployer
 import (
 	"math/big"
 
-	"github.com/qtumproject/solar/contract"
+	"github.com/coinevo/solar/contract"
 )
 
 type Options struct {

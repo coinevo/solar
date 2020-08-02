@@ -9,18 +9,18 @@ import (
 	"sync"
 
 	"github.com/pkg/errors"
-	"github.com/qtumproject/solar/contract"
-	"github.com/qtumproject/solar/deployer"
-	"github.com/qtumproject/solar/deployer/eth"
-	"github.com/qtumproject/solar/deployer/qtum"
-	"github.com/qtumproject/solar/varstr"
+	"github.com/coinevo/solar/contract"
+	"github.com/coinevo/solar/deployer"
+	"github.com/coinevo/solar/deployer/eth"
+	"github.com/coinevo/solar/deployer/qtum"
+	"github.com/coinevo/solar/varstr"
 	kingpin "gopkg.in/alecthomas/kingpin.v2"
 )
 
 var (
 	app               = kingpin.New("solar", "Solidity smart contract deployment management.")
 	qtumRPC           = app.Flag("qtum_rpc", "RPC provider url").Envar("QTUM_RPC").String()
-	qtumSenderAddress = app.Flag("qtum_sender", "(qtum) Sender UTXO Address").Envar("QTUM_SENDER").String()
+	qtumSenderAddress = app.Flag("qtum_sender", "(evo) Sender UTXO Address").Envar("QTUM_SENDER").String()
 
 	// geth --rpc --rpcapi="eth,personal,miner"
 	ethRPC    = app.Flag("eth_rpc", "RPC provider url").Envar("ETH_RPC").String()
@@ -53,7 +53,7 @@ type solarCLI struct {
 var solar = &solarCLI{}
 
 var (
-	errorUnspecifiedRPC = errors.New("Please specify RPC url by setting QTUM_RPC or ETH_RPC or using flag --qtum_rpc or --eth_rpc")
+	errorUnspecifiedRPC = errors.New("Please specify RPC url by setting EVO_RPC or ETH_RPC or using flag --evo_rpc or --eth_rpc")
 )
 
 func (c *solarCLI) RPCPlatform() RPCPlatform {

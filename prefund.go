@@ -10,7 +10,7 @@ import (
 )
 
 func init() {
-	cli := app.Command("prefund", "(qtum) fund an owner address with utxos")
+	cli := app.Command("prefund", "(evo) fund an owner address with utxos")
 
 	owner := cli.Arg("owner", "contract name or address to fund").Required().String()
 
@@ -64,7 +64,7 @@ func init() {
 			1. "fromaccount"         (string, required) DEPRECATED. The account to send the funds from. Should be "" for the default account
 			2. "amounts"             (string, required) A json object with addresses and amounts
 			    {
-			      "address":amount   (numeric or string) The qtum address is the key, the numeric amount (can be string) in QTUM is the value
+			      "address":amount   (numeric or string) The evo address is the key, the numeric amount (can be string) in QTUM is the value
 			      ,...
 			    }
 		*/

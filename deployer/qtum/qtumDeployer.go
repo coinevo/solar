@@ -4,14 +4,14 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/qtumproject/solar/deployer"
+	"github.com/coinevo/solar/deployer"
 
-	"github.com/qtumproject/solar/b58addr"
+	"github.com/coinevo/solar/b58addr"
 
 	"math/rand"
 
 	"github.com/pkg/errors"
-	"github.com/qtumproject/solar/contract"
+	"github.com/coinevo/solar/contract"
 )
 
 type Deployer struct {

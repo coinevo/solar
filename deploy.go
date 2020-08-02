@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	"github.com/pkg/errors"
-	"github.com/qtumproject/solar/contract"
-	"github.com/qtumproject/solar/deployer"
+	"github.com/coinevo/solar/contract"
+	"github.com/coinevo/solar/deployer"
 )
 
 type deployTarget struct {
