@@ -1,8 +1,8 @@
 pragma solidity ^0.4.0;
 
-contract QtumTest {
+contract EvoTest {
    uint storedNumber;
-   function QtumTest() {
+   function EvoTest() {
        storedNumber=1;
    }
    function setNumber(uint number) public {

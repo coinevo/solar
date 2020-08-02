@@ -11,7 +11,7 @@ type Options struct {
 	Name      string
 	Overwrite bool
 
-	// GasPrice is specified in satoshi (qtum) or wei (ethereum)
+	// GasPrice is specified in satoshi (evo) or wei (ethereum)
 	GasPrice *big.Float
 	GasLimit uint
 }

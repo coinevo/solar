@@ -12,15 +12,15 @@ import (
 	"github.com/coinevo/solar/contract"
 	"github.com/coinevo/solar/deployer"
 	"github.com/coinevo/solar/deployer/eth"
-	"github.com/coinevo/solar/deployer/qtum"
+	"github.com/coinevo/solar/deployer/evo"
 	"github.com/coinevo/solar/varstr"
 	kingpin "gopkg.in/alecthomas/kingpin.v2"
 )
 
 var (
 	app               = kingpin.New("solar", "Solidity smart contract deployment management.")
-	qtumRPC           = app.Flag("qtum_rpc", "RPC provider url").Envar("QTUM_RPC").String()
-	qtumSenderAddress = app.Flag("qtum_sender", "(evo) Sender UTXO Address").Envar("QTUM_SENDER").String()
+	evoRPC           = app.Flag("evo_rpc", "RPC provider url").Envar("EVO_RPC").String()
+	evoSenderAddress = app.Flag("evo_sender", "(evo) Sender UTXO Address").Envar("EVO_SENDER").String()
 
 	// geth --rpc --rpcapi="eth,personal,miner"
 	ethRPC    = app.Flag("eth_rpc", "RPC provider url").Envar("ETH_RPC").String()
@@ -35,7 +35,7 @@ var (
 type RPCPlatform int
 
 const (
-	RPCQtum     = iota
+	RPCEvo     = iota
 	RPCEthereum = iota
 )
 
@@ -57,12 +57,12 @@ var (
 )
 
 func (c *solarCLI) RPCPlatform() RPCPlatform {
-	if *qtumRPC == "" && *ethRPC == "" {
+	if *evoRPC == "" && *ethRPC == "" {
 		log.Fatalln(errorUnspecifiedRPC)
 	}
 
-	if *qtumRPC != "" {
-		return RPCQtum
+	if *evoRPC != "" {
+		return RPCEvo
 	}
 
 	return RPCEthereum
@@ -121,10 +121,10 @@ func (c *solarCLI) ContractsRepository() *contract.ContractsRepository {
 	return c.repo
 }
 
-func (c *solarCLI) QtumRPC() *qtum.RPC {
-	rpc, err := qtum.NewRPC(*qtumRPC)
+func (c *solarCLI) EvoRPC() *evo.RPC {
+	rpc, err := evo.NewRPC(*evoRPC)
 	if err != nil {
-		fmt.Println("Invalid QTUM RPC URL:", *qtumRPC)
+		fmt.Println("Invalid EVO RPC URL:", *evoRPC)
 		os.Exit(1)
 	}
 
@@ -157,13 +157,13 @@ func (c *solarCLI) Deployer() (deployer deployer.Deployer) {
 	var err error
 	var rpcURL *url.URL
 
-	if rawurl := *qtumRPC; rawurl != "" {
+	if rawurl := *evoRPC; rawurl != "" {
 
 		rpcURL, err = url.ParseRequestURI(rawurl)
 		if err != nil {
 			log.Fatalf("Invalid RPC url: %#v", rawurl)
 		}
-		deployer, err = qtum.NewDeployer(rpcURL, c.ContractsRepository(), *qtumSenderAddress)
+		deployer, err = evo.NewDeployer(rpcURL, c.ContractsRepository(), *evoSenderAddress)
 	}
 
 	if rawurl := *ethRPC; rawurl != "" {

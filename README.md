@@ -225,8 +225,8 @@ Compile Solidity contracts.
 
 Flags:
   --help                     Show context-sensitive help (also try --help-long and --help-man).
-  --qtum_rpc=QTUM_RPC        RPC provider url
-  --qtum_sender=QTUM_SENDER  (qtum) Sender UTXO Address
+  --evo_rpc=EVO_RPC        RPC provider url
+  --evo_sender=EVO_SENDER  (evo) Sender UTXO Address
   --eth_rpc=ETH_RPC          RPC provider url
   --env="development"        Environment name
   --repo=REPO                Path of contracts repository
